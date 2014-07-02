@@ -1,91 +1,74 @@
-var canvasW = 800;
-var canvasH = 200;
 
-// Create the SVG image...
-var svg = d3.select('#graph')
-  .append('svg')
-  .attr('width', canvasW)
-  .attr('height', canvasH);
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
-//Create the csv data?
+var parseDate = d3.time.format("%d-%b-%y").parse;
 
-// firstArray =
-// {'1993-01-01': 61176.124,
-// '1994-01-01': 61572.173,
-// '1995-01-01': 61991.920,
-// '1996-01-01': 62371.519,
-// '1997-01-01': 62675.478,
-// '1998-01-01': 62950.532,
-// '1999-01-01': 63242.284,
-// '2000-01-01': 64491.431,
-// '2001-01-01': 64776.531,
-// '2002-01-01': 65018.293,
-// '2003-01-01': 65276.954,
-// '2004-01-01': 65532.305,
-// '2005-01-01': 65751.872,
-// '2006-01-01': 66028.555,
-// '2007-01-01': 66293.689,
-// '2008-01-01': 66523.935,
-// '2009-01-01': 66748.437,
-// '2010-01-01': 66976.321,
-// '2011-01-01': 67146.663,
-// '2012-01-01': 67321.425,
-// '2013-01-01': 67547.890}
-// debugger
+var x = d3.time.scale()
+    .range([0, width]);
 
-// var answers = d3.csv("./CMWRPOP.csv", function(data) {
-//         dataset=data
-//         });
+var y = d3.scale.linear()
+    .range([height, 0]);
 
-var rows;
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
 
-d3.csv("./CMWRPOP.csv", function(loadedRows) {
-  rows = loadedRows;
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var line = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.price); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.json("http://api.eia.gov/series/?api_key=5BDF29D557600AA90937165DE3D697D7&series_id=PET.EMM_EPMRU_PTE_SWA_DPG.W", function(error, data) {
+  var gasPrices = [];
+
+  var response = data["series"]["0"]["data"];
+  for (var i = 0; i < response.length; i++) {
+    var gasHash = {};
+    var date = response[i][0];
+    var price = response[i][1];
+    gasHash["date"] = date;
+    gasHash["price"] = price;
+
+    gasPrices.push(gasHash);
+  }
+
+  gasPrices.forEach(function(d) {
+
+    d.date = parseDate(d.date);
+    d.price = +d.price;
+  });
+
+  x.domain(d3.extent(gasPrices, function(d) { return d.date; }));
+  y.domain(d3.extent(gasPrices, function(d) { return d.price; }));
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Price ($)");
+
+  svg.append("path")
+      .datum(gasPrices)
+      .attr("class", "line")
+      .attr("d", line);
 });
-
-
-function redrawGraph() {
-
-  // Redraw the graph image...
-
-    //Using this data:
-  var data = firstArray();
-   //With this scale:
-  var scaleY = d3.scale.linear()
-    //maybe you want to display 1-100 on a scale...
-    .range([0, canvasH])
-    //and maybe your set is
-    .domain([0, d3.max(data)]);
-
-  //Create visual 'Bars' for a bar graph:
-  var bars = svg.selectAll('rect')
-  .data(data);
-
-    //Creates bars of 'enter' class, appending them to the dom
-  bars.enter()
-    .append('rect')
-    //set default height to 0...
-    .attr('height', 0)
-    .attr('width', 100)
-    .attr('y', canvasH);
-
-    // updates preexisiting bars
-  bars
-    .transition()
-    .attr('x', function(d, i){ return i * (canvasW / data.length)})
-    .attr('y', function(d){ return canvasH - scaleY(d); })
-    .attr('width', 200)
-    .attr('height', function(d) { return scaleY(d); });
-    // .attr('fill', function(d){ return rgb })
-
-    //removes bars of 'exit' group. (put in exit class because they lack data)
-  bars.exit()
-    .transition()
-    .attr('height', 0)
-    .attr('y', canvasH)
-    .remove();
-
-
-  console.log(data);
-
-};
