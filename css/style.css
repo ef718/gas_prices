@@ -1,0 +1,31 @@
+body {
+  font: 100 16px/1.4 'Helvetica Neue', Helvetica, sans-serif;
+  margin: 50px;
+}
+
+h1 {
+  font-weight: 200;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis line,
+.axis path {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
