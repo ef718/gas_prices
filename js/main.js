@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var canvasW = 800;
 var canvasH = 300;
 
@@ -42,7 +41,7 @@ function redrawGraph() {
     .attr('height', 0)
     .remove();
 }
-=======
+
 // Various accessors that specify the four dimensions of data to visualize.
 function x(d) { return d.income; }
 function y(d) { return d.lifeExpectancy; }
@@ -227,5 +226,5 @@ d3.json("nations.json", function(nations) {
   }
 });
 
-console.log(testing! Gas Prices!);
->>>>>>> 9f10d7b5595e6cc2fdf0fcea9ff2d6a5c067ef30
+console.log("testing! Gas Prices!");
+
