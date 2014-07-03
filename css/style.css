@@ -15,6 +15,36 @@ body {
 
 .line {
   fill: none;
-  stroke: steelblue;
+  stroke: red;
+  stroke-width: 1.5px;
+}
+
+.blue-line {
+  fill: none;
+  stroke: blue;
+  stroke-width: 1.5px;
+}
+
+.yellow-line {
+  fill: none;
+  stroke: orange;
+  stroke-width: 1.5px;
+}
+
+.green-line {
+  fill: none;
+  stroke: green;
+  stroke-width: 1.5px;
+}
+
+.purple-line {
+  fill: none;
+  stroke: purple;
+  stroke-width: 1.5px;
+}
+
+.violet-line {
+  fill: none;
+  stroke: maroon;
   stroke-width: 1.5px;
 }
