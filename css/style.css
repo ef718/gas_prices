@@ -6,7 +6,15 @@ body {
 }
 
 #container {
-  background-color: #7F7669;
+  background: rgb(255,245,219);
+background: -moz-linear-gradient(top,  rgba(255,245,219,1) 0%, rgba(204,194,167,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,245,219,1)), color-stop(100%,rgba(204,194,167,1)));
+background: -webkit-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: -o-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: -ms-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: linear-gradient(to bottom,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff5db', endColorstr='#ccc2a7',GradientType=0 );
+
   position: absolute;
   padding: 2000px;
 
@@ -72,15 +80,15 @@ h1 {
 
 .graph-background {
 padding: 20px;
-background: rgb(204,194,167);
-background: -moz-linear-gradient(top,  rgba(204,194,167,1) 45%, rgba(255,245,219,1) 81%);
-background: -webkit-gradient(linear, left top, left bottom, color-stop(45%,rgba(204,194,167,1)), color-stop(81%,rgba(255,245,219,1)));
-background: -webkit-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
-background: -o-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
-background: -ms-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
-background: linear-gradient(to bottom,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc2a7', endColorstr='#fff5db',GradientType=0 );
-
+/*background: rgb(255,245,219);
+background: -moz-linear-gradient(top,  rgba(255,245,219,1) 0%, rgba(204,194,167,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,245,219,1)), color-stop(100%,rgba(204,194,167,1)));
+background: -webkit-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: -o-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: -ms-linear-gradient(top,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+background: linear-gradient(to bottom,  rgba(255,245,219,1) 0%,rgba(204,194,167,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff5db', endColorstr='#ccc2a7',GradientType=0 );
+*/
 }
 
 .graph-text {
@@ -107,4 +115,9 @@ svg {
 
 .area {
   fill: #FFF5DB;
+}
+
+select {
+  margin-left: 40px;
+  margin-bottom: 20px;
 }
