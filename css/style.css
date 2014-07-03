@@ -1,5 +1,26 @@
+
 body {
-  font: 10px sans-serif;
+  background-color: 1a3667;
+  font: 12px sans-serif;
+  margin: 0;
+}
+
+#container {
+  background-color: #7F7669;
+  position: absolute;
+  padding: 2000px;
+
+}
+
+h1 {
+  color: #7F0100;
+  font-size: 28px;
+  padding-left: 40px;
+}
+
+.area {
+    fill: url(#area-gradient);
+    stroke-width: 0px;
 }
 
 .axis path,
@@ -47,4 +68,43 @@ body {
   fill: none;
   stroke: maroon;
   stroke-width: 1.5px;
+}
+
+.graph-background {
+padding: 20px;
+background: rgb(204,194,167);
+background: -moz-linear-gradient(top,  rgba(204,194,167,1) 45%, rgba(255,245,219,1) 81%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(45%,rgba(204,194,167,1)), color-stop(81%,rgba(255,245,219,1)));
+background: -webkit-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
+background: -o-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
+background: -ms-linear-gradient(top,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
+background: linear-gradient(to bottom,  rgba(204,194,167,1) 45%,rgba(255,245,219,1) 81%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ccc2a7', endColorstr='#fff5db',GradientType=0 );
+
+}
+
+.graph-text {
+  color: #7F796B;
+}
+
+
+svg {
+  border-color: #000;
+  border-width: 1px;
+  position: relative;
+  margin-top: 40px;
+  margin-left: 40px;
+
+}
+
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.area {
+  fill: #FFF5DB;
 }
