@@ -1,9 +1,8 @@
-
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%d-%b-%y").parse;
+var parseDate = d3.time.format("%Y%m%d").parse;
 
 var x = d3.time.scale()
     .range([0, width]);
@@ -29,7 +28,8 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.json("http://api.eia.gov/series/?api_key=5BDF29D557600AA90937165DE3D697D7&series_id=PET.EMM_EPMRU_PTE_SWA_DPG.W", function(error, data) {
+// US gas prices
+d3.json("http://api.eia.gov/series/?api_key=5BDF29D557600AA90937165DE3D697D7&series_id=PET.EMM_EPMRU_PTE_NUS_DPG.W", function(error, data) {
   var gasPrices = [];
 
   var response = data["series"]["0"]["data"];
@@ -44,7 +44,6 @@ d3.json("http://api.eia.gov/series/?api_key=5BDF29D557600AA90937165DE3D697D7&ser
   }
 
   gasPrices.forEach(function(d) {
-
     d.date = parseDate(d.date);
     d.price = +d.price;
   });
